@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const RootLayout = () => {
   return (
     <>
-      <div className="flex">
+      <div className="flex bg-[rgba(244,_249,_253,_1)]">
         <Sidebar />
         <div>
           <Header />
