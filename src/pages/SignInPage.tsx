@@ -1,6 +1,7 @@
 import Icon from "../components/ui/Icon";
 import "../assets/styles/sign-in.css";
 import illustration from "../assets/icons/Illustration.svg";
+import Input from "../components/ui/Input";
 
 const SignInPage = () => {
   return (
@@ -12,13 +13,35 @@ const SignInPage = () => {
               <Icon.companyLogo />
               <h2 className="brand-title">Woorkroom</h2>
             </div>
-            <p className="desc text-white text-[40px] max-w-[390px]">Your place to work Plan. Create. Control.</p>
-            <img width={600} height={373} src={illustration} alt="illustration" />
+            <p className="desc text-white text-[40px] max-w-[390px]">
+              Your place to work Plan. Create. Control.
+            </p>
+            <img
+              width={600}
+              height={373}
+              src={illustration}
+              alt="illustration"
+            />
           </div>
         </div>
 
         <div className="w-[100%] max-w-[50%] bg-[white] shadow-[0px_6px_rgba(196_203_214_0.5)]">
-          <h2>kjchdnjlm</h2>
+          <div className="flex max-w-[403px] mx-auto flex-col items-center pt-[115px]">
+            <h2 className="sign-in-title ">Sign In to Woorkroom</h2>
+            <form className="w-full flex flex-col gap-[31px] mt-[33px]">
+              <Input
+                inputClassName="w-full"
+                label="Email Address"
+                placeholder="youremail@gmail.com"
+              />
+              <Input
+                inputClassName="w-full"
+                label="Password"
+                placeholder="******"
+                eyeIcon={true}
+              />
+            </form>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,16 @@
-.brand-title{
-    font-family: Nunito Sans;
-    font-weight: 700;
-    font-size: 30px;
+.brand-title {
+  font-family: Nunito Sans;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.desc {
+  font-family: Nunito Sans;
+  font-weight: 700;
+}
+
+.sign-in-title {
+  font-family: Nunito Sans;
+  font-weight: 700;
+  font-size: 22px;
 }
