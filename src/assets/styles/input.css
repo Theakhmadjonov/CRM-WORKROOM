@@ -1,3 +1,7 @@
+* {
+  font-family: Nunito Sans;
+}
+
 label {
   color: rgb(125, 133, 146);
   font-weight: 700;
@@ -18,7 +22,6 @@ input::placeholder {
   font-family: Nunito Sans;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
 }
-

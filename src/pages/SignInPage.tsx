@@ -2,6 +2,7 @@ import Icon from "../components/ui/Icon";
 import "../assets/styles/sign-in.css";
 import illustration from "../assets/icons/Illustration.svg";
 import Input from "../components/ui/Input";
+import Button from "../components/ui/Button";
 
 const SignInPage = () => {
   return (
@@ -40,6 +41,28 @@ const SignInPage = () => {
                 placeholder="******"
                 eyeIcon={true}
               />
+              <div className="flex items-center justify-between mt-[20px]">
+                <div className="flex gap-[14px] items-center">
+                  <input id="save-me" type="checkbox" />
+                  <label
+                    htmlFor="save-me"
+                    className="text-[16px] text-[rgba(125_133_146)] font-medium cursor-pointer"
+                  >
+                    Remember me
+                  </label>
+                </div>
+                <span className="text-[16px] text-[rgba(125_133_146)] font-medium cursor-pointer">
+                  Forgot Password?
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-5 mt-[20px]">
+                <Button variant="medium" className="flex items-center gap-2">
+                  Sign In <Icon.rightArrowIcon />
+                </Button>
+                <span className="font-semibold text-[16px] text-[#3f8cff]">
+                  Don't have an account?
+                </span>
+              </div>
             </form>
           </div>
         </div>
