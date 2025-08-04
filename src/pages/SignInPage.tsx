@@ -32,12 +32,14 @@ const SignInPage = () => {
             <form className="w-full flex flex-col gap-[31px] mt-[33px]">
               <Input
                 inputClassName="w-full"
+                type="email"
                 label="Email Address"
                 placeholder="youremail@gmail.com"
               />
               <Input
                 inputClassName="w-full"
                 label="Password"
+                type={"password"}
                 placeholder="******"
                 eyeIcon={true}
               />

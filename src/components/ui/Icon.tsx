@@ -3,9 +3,29 @@ import type { JSX } from "react";
 interface IconProps {
   rightArrowIcon: () => JSX.Element;
   companyLogo: () => JSX.Element;
+  correctIcon: () => JSX.Element;
 }
 
 const Icon: IconProps = {
+  correctIcon: () => {
+    return (
+      <svg
+        width="14"
+        height="10"
+        viewBox="0 0 14 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M13.364 0.878458C13.7266 1.24109 13.7525 1.81293 13.4417 2.20545L13.364 2.29267L6.29289 9.36374C5.93027 9.72637 5.35842 9.75227 4.9659 9.44145L4.87868 9.36374L0.636041 5.1211C0.245516 4.73057 0.245516 4.09741 0.636041 3.70689C0.99867 3.34426 1.57052 3.31835 1.96303 3.62918L2.05025 3.70689L5.58601 7.24156L11.9497 0.878458C12.3124 0.515829 12.8842 0.489927 13.2767 0.800752L13.364 0.878458Z"
+          fill="#3F8CFF"
+        />
+      </svg>
+    );
+  },
+
   rightArrowIcon: () => {
     return (
       <svg
