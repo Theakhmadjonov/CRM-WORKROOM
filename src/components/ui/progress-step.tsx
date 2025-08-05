@@ -1,42 +1,26 @@
+import type { IDataProgress } from "../../hooks/useStepProgressAuth";
 import Icon from "./Icon";
 
 interface ProgressProps {
   currentStep: number;
-  previusStepSuccess: boolean;
-  previusSteps: number[];
-  steps: number;
+  steps: IDataProgress[];
 }
 
-const progressStepsChars = [
-  "Valid your phone",
-  "Tell about yourself",
-  "Tell about your company",
-  "Invite team Members",
-];
-
-const ProgressStep = ({
-  steps,
-  currentStep,
-  previusStepSuccess,
-  previusSteps,
-}: ProgressProps) => {
-  const stepsArray = new Array(steps).fill(1).map((item, index) => {
-    return progressStepsChars[index];
-  });
+const ProgressStep = ({ currentStep, steps }: ProgressProps) => {
   return (
     <div className="flex gap-y-1.5 gap-x-[22px]">
-      <div className="flex flex-col justify-between items-center gap-[6px]">
-        {stepsArray.map((steps, index) => {
+      <div className="flex flex-col items-center justify-between gap-[6px]">
+        {steps.map(({ isSuccess }, index) => {
           return (
             <>
-              {previusStepSuccess && previusSteps.includes(index + 1) ? (
+              {isSuccess ? (
                 <>
                   <div
                     className={`w-[24px] h-[24px] rounded-full border-2 bg-white border-none flex items-center justify-center`}
                   >
                     <Icon.correctIcon />
                   </div>
-                  {index < stepsArray.length - 1 && (
+                  {index !== steps.length - 1 && (
                     <div
                       className={`w-[2px] h-[26px] bg-white rounded-[1px]`}
                     ></div>
@@ -45,15 +29,15 @@ const ProgressStep = ({
               ) : (
                 <>
                   <div
-                    style={{ backgroundColor: "#79afff" }}
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                     className={`w-[24px] h-[24px] ${
                       index !== currentStep - 1 ? "opacity-30" : ""
-                    }  rounded-full border-2 border-white`}
+                    } rounded-full bg-[rgba(255_255_255_0.3)] border-2 border-white`}
                   ></div>
-                  {index < stepsArray.length - 1 && (
+                  {index !== steps.length - 1 && (
                     <div
                       className={`w-[2px] h-[26px] ${
-                        index !== currentStep - 1 && "opacity-30"
+                        index + 1 !== currentStep && "opacity-30"
                       } bg-white rounded-[1px]`}
                     ></div>
                   )}
@@ -63,20 +47,19 @@ const ProgressStep = ({
           );
         })}
       </div>
-
-      <div className="flex flex-col justify-between text-[18px] font-semibold text-white">
-        {stepsArray.map((stepTitle, index) => {
+      <div className="flex flex-col justify-between text-white text-[18px] font-semibold">
+        {steps.map(({ title, isSuccess }, index) => {
           return (
             <>
-              {previusStepSuccess && previusSteps.includes(index + 1) ? (
-                <span className={`block text-white `}>{stepTitle}</span>
+              {isSuccess ? (
+                <span className={`block`}>{title}</span>
               ) : (
                 <span
-                  className={`block text-white ${
+                  className={`block ${
                     index !== currentStep - 1 && "opacity-30"
                   }`}
                 >
-                  {stepTitle}
+                  {title}
                 </span>
               )}
             </>
