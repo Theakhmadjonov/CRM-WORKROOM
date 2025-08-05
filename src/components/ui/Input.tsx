@@ -33,7 +33,7 @@ const Input = ({
   };
   return (
     <div className="flex flex-col gap-y-2">
-      <label>{label}</label>
+      <label className="label">{label}</label>
       <div className="relative">
         <input
           type={visible}

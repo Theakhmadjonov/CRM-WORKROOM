@@ -16,3 +16,9 @@
 .btn:hover {
   opacity: 0.7;
 }
+
+.btn.disabled {
+  opacity: 0.5;
+  transition: 0.5 ease;
+  cursor: default;
+}

@@ -9,6 +9,7 @@ import Step1 from "../components/steps/Step1";
 const SignUpPage = () => {
   const totalStep = 4;
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSuccess, setisSuccess] = useState(false);
   const { progressData, setProgressData } = useStepProgressAuth();
   const handleSavePreviusStep = () => {
     const findStep = progressData.find((step) => step.step === currentStep - 1);
@@ -39,8 +40,8 @@ const SignUpPage = () => {
             <ProgressStep steps={progressData} currentStep={currentStep} />
           </div>
         </div>
-        <div className="w-[100%] max-w-[70%] rounded-[24px]  bg-white shadow-[0px_6px_rgba(196_203_214_0.5)]">
-          <div className="flex flex-col max-w-[403px] mx-auto items-center pt-[115px]">
+        <div className="w-[100%] flex flex-col justify-between pb-[18px] max-w-[70%] rounded-[24px] bg-white shadow-[0px_6px_rgba(196_203_214_0.5)]">
+          <div className="flex flex-col max-w-[403px] mx-auto items-center pt-[75px]">
             <span className="font-bold text-[14px] text-[#3F8CFF]">
               Step {currentStep}/{totalStep}
             </span>
@@ -49,10 +50,13 @@ const SignUpPage = () => {
             </h2>
             <Step1 />
           </div>
-          <div className="border-t-2 border-[#E4E6EF] pt-[18px] mt-[84px]">
+          <div className="border-t-2 border-[#E4E6EF] pt-[18px] mt-10">
             <Button
+              disabled={isSuccess}
               variant="small"
-              className="flex gap-x-3 items-center ml-auto mr-10"
+              className={`flex gap-x-3 items-center ml-auto mr-10 ${
+                !isSuccess && "disabled"
+              }`}
             >
               Next Step
               <Icon.rightArrowIcon />
