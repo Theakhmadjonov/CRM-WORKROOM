@@ -1,0 +1,27 @@
+import Button from "../ui/Button";
+import Icon from "../ui/Icon";
+import Input from "../ui/Input";
+
+const Step1 = () => {
+  return (
+    <div className="w-full">
+      <form className="flex flex-col gap-y-[31px] mt-[33px]">
+        <Input
+          inputClassName="w-full"
+          type="email"
+          label="Email Address"
+          placeholder="youremail@gmail.com"
+        />
+        <Input
+          inputClassName="w-full"
+          label="Create Password"
+          type={"password"}
+          placeholder="••••••••"
+          eyeIcon={true}
+        />
+      </form>
+    </div>
+  );
+};
+
+export default Step1;
