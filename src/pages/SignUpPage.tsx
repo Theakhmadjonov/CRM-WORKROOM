@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import Step1 from "../components/steps/Step1";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
-import Input from "../components/ui/Input";
-import useStepProgressAuth from "../hooks/useStepProgressAuth";
 import ProgressStep from "../components/ui/progress-step";
-import Step1 from "../components/steps/Step1";
+import useStepProgressAuth from "../hooks/useStepProgressAuth";
 
 const SignUpPage = () => {
   const totalStep = 4;
@@ -52,7 +51,7 @@ const SignUpPage = () => {
           </div>
           <div className="border-t-2 border-[#E4E6EF] pt-[18px] mt-10">
             <Button
-              disabled={isSuccess}
+              disabled={true}
               variant="small"
               className={`flex gap-x-3 items-center ml-auto mr-10 ${
                 !isSuccess && "disabled"
