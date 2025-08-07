@@ -1,6 +1,4 @@
 import "../../assets/styles/input.css";
-import Button from "../ui/Button";
-import Icon from "../ui/Icon";
 import Input from "../ui/Input";
 import InputMask from "../ui/InputMask";
 import Otpinput from "../ui/OtpInput";

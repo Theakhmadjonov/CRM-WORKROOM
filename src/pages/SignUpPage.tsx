@@ -4,27 +4,34 @@ import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
 import ProgressStep from "../components/ui/progress-step";
 import useStepProgressAuth from "../hooks/useStepProgressAuth";
+import Step2 from "../components/steps/Step2";
+import Step3 from "../components/steps/Step3";
+import Step4 from "../components/steps/Step4";
 
 const SignUpPage = () => {
   const totalStep = 4;
   const [currentStep, setCurrentStep] = useState(1);
   const [isSuccess, setisSuccess] = useState(false);
   const { progressData, setProgressData } = useStepProgressAuth();
-  const handleSavePreviusStep = () => {
-    const findStep = progressData.find((step) => step.step === currentStep - 1);
-    findStep.isSuccess = true;
-    setProgressData([...progressData]);
-  };
   const incrementCurrentStep = () => {
-    if (currentStep <= 4) {
-      setCurrentStep((prevState) => prevState + 1);
+    if (currentStep < totalStep) {
+      const updatedSteps = progressData.map((step) =>
+        step.step === currentStep ? { ...step, isSuccess: true } : step
+      );
+      setProgressData(updatedSteps);
+      setCurrentStep((prev) => prev + 1);
     }
   };
-  useEffect(() => {
-    if (currentStep !== 1) {
-      handleSavePreviusStep();
+
+  const decrementCurrentStep = () => {
+    if (currentStep > 1) {
+      const updatedSteps = progressData.map((step) =>
+        step.step === currentStep - 1 ? { ...step, isSuccess: false } : step
+      );
+      setProgressData(updatedSteps);
+      setCurrentStep((prev) => prev - 1);
     }
-  }, [currentStep]);
+  };
   return (
     <section className="h-screen p-[20px_35px_30px_35px] bg-[#F4F9FD]">
       <div className="flex h-full gap-x-8">
@@ -47,11 +54,24 @@ const SignUpPage = () => {
             <h2 className="signin-title">
               {progressData[currentStep - 1].title}
             </h2>
-            <Step1 />
+            {currentStep === 1 && <Step1 />}
+            {currentStep === 2 && <Step2 />}
+            {currentStep === 3 && <Step3 />}
+            {currentStep === 4 && <Step4 />}
           </div>
-          <div className="border-t-2 border-[#E4E6EF] pt-[18px] mt-10">
+          <div className="border-t-2 border-[#E4E6EF] pt-[18px] mt-10 flex items-center">
+            {currentStep > 1 && (
+              <button
+                onClick={decrementCurrentStep}
+                className="flex items-center gap-[5px] border-none text-[#3F8CFF] ml-[56px]"
+              >
+                <Icon.previusIcon />
+                Previous
+              </button>
+            )}
             <Button
-              disabled={true}
+              onClick={incrementCurrentStep}
+              disabled={false}
               variant="small"
               className={`flex gap-x-3 items-center ml-auto mr-10 ${
                 !isSuccess && "disabled"
