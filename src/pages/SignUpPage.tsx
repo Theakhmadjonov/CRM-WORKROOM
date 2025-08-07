@@ -51,7 +51,7 @@ const SignUpPage = () => {
             <span className="font-bold text-[14px] text-[#3F8CFF]">
               Step {currentStep}/{totalStep}
             </span>
-            <h2 className="signin-title">
+            <h2 className="signin-title text-[22px] font-bold">
               {progressData[currentStep - 1].title}
             </h2>
             {currentStep === 1 && <Step1 />}
