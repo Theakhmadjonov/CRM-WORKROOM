@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Input from "../ui/Input";
-import SelectInput from "../ui/SelectInput";
 
 const Step4 = () => {
   const [countInput, setCountInput] = useState<number[]>([1]);
