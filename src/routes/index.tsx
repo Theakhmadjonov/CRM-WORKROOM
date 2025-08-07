@@ -4,6 +4,7 @@ import AppWrapperLayout from "../layouts/AppWrapperLayout";
 import DashboardPage from "../pages/DashboardPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
+import SuccessfullPage from "../pages/SuccessfullPage";
 
 export const routes = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const routes = createBrowserRouter([
       {
         path: "sign-up",
         element: <SignUpPage />,
+      },
+      {
+        path: "successfull",
+        element: <SuccessfullPage />,
       },
     ],
   },

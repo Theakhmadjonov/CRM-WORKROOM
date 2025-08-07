@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Step1 from "../components/steps/Step1";
+import Step2 from "../components/steps/Step2";
+import Step3 from "../components/steps/Step3";
+import Step4 from "../components/steps/Step4";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
 import ProgressStep from "../components/ui/progress-step";
 import useStepProgressAuth from "../hooks/useStepProgressAuth";
-import Step2 from "../components/steps/Step2";
-import Step3 from "../components/steps/Step3";
-import Step4 from "../components/steps/Step4";
 
 const SignUpPage = () => {
   const totalStep = 4;
@@ -69,17 +70,23 @@ const SignUpPage = () => {
                 Previous
               </button>
             )}
-            <Button
-              onClick={incrementCurrentStep}
-              disabled={false}
-              variant="small"
-              className={`flex gap-x-3 items-center ml-auto mr-10 ${
-                !isSuccess && "disabled"
-              }`}
-            >
-              Next Step
-              <Icon.rightArrowIcon />
-            </Button>
+            {currentStep === 4 ? (
+              <Link to={"/successfull"} className="link flex gap-x-3 items-center ml-auto mr-10">
+                Next Step <Icon.rightArrowIcon />
+              </Link>
+            ) : (
+              <Button
+                onClick={incrementCurrentStep}
+                disabled={false}
+                variant="small"
+                className={`flex gap-x-3 items-center ml-auto mr-10 ${
+                  !isSuccess && "disabled"
+                }`}
+              >
+                Next Step
+                <Icon.rightArrowIcon />
+              </Button>
+            )}
           </div>
         </div>
       </div>
