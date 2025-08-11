@@ -32,51 +32,48 @@ const Step1 = () => {
   useEffect(() => {
     if (isError) {
       toast.error(error["response"].data.message);
+      toast.error("csc");
     }
   }, [isError]);
   return (
-    <div className="w-full">
-      <form className="flex flex-col gap-y-[31px] mt-[33px]">
-        <InputMask
-          label="Mobile Number"
-          handleClick={handleClick}
-          isLoading={isPending}
-          sendOtpSuccess={!canSendOtp}
-          inputRef={ref}
+    <>
+      <InputMask
+        handleClick={handleClick}
+        isLoading={isPending}
+        sendOtpSuccess={!canSendOtp}
+        inputRef={ref}
+        label="Mobile Number"
+      />
+      {!canSendOtp && (
+        <Otpinput
+          setCanSendOtp={setCanSendOtp}
+          phone_number={phoneNumber}
+          label="Code from SMS"
         />
-
-        {!canSendOtp && (
-          <Otpinput
-            setCanSendOtp={setCanSendOtp}
-            phone_number={phoneNumber}
-            label="Code from SMS"
-          />
-        )}
-        {!canSendOtp && (
-          <CodeTimer
-            setCanSendOtp={setCanSendOtp}
-            phone_number={phoneNumber}
-            time={59}
-          />
-        )}
-
-        <Input
-          inputClassName="w-full"
-          type="email"
-          required={true}
-          label="Email Address"
-          placeholder="youremail@gmail.com"
+      )}
+      {!canSendOtp && (
+        <CodeTimer
+          setCanSendOtp={setCanSendOtp}
+          phone_number={phoneNumber}
+          time={59}
         />
-        <Input
-          inputClassName="w-full"
-          label="Create Password"
-          type={"password"}
-          required={true}
-          placeholder="••••••••"
-          eyeIcon={true}
-        />
-      </form>
-    </div>
+      )}
+      <Input
+        inputClassName="w-full"
+        type="email"
+        required={true}
+        label="Email Address"
+        placeholder="youremail@gmail.com"
+      />
+      <Input
+        required={true}
+        inputClassName="w-full"
+        label="Create Password"
+        type={"password"}
+        placeholder="••••••••"
+        eyeIcon={true}
+      />
+    </>
   );
 };
 

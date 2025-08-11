@@ -27,9 +27,9 @@ const InputMask = ({
           <IMaskInput
             inputRef={inputRef}
             className="input w-full"
-            mask={"+{998} 00 000 00 00"}
-            unmask={"+998000000000"}
-            defaultValue={"+998"}
+            mask="{+998} 00 000 00 00"
+            unmask="+998000000000"
+            defaultValue="+998"
             inputMode="tel"
             minLength={17}
           />
