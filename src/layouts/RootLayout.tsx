@@ -7,7 +7,7 @@ const RootLayout = () => {
     <>
       <div className="flex bg-[rgba(244,_249,_253,_1)]">
         <Sidebar />
-        <div>
+        <div className="grow">
           <Header />
           <Outlet />
         </div>

@@ -32,7 +32,7 @@ const SignUpPage = () => {
   const getCurrentStep = () => {
     switch (currentStep) {
       case 1: {
-        return <Step1 />;
+        return <Step1 setNextstep={setNextStep}/>;
       }
       case 2: {
         return <Step2 />;
@@ -77,7 +77,7 @@ const SignUpPage = () => {
           <div className="border-t-2 border-[#E4E6E8] pt-[10px] pb-[10px]">
             <Button
               variant="small"
-              disabled={nextStep}
+              disabled={!nextStep}
               onClick={incrementCurrentStep}
               className={`flex ml-auto mr-10 items-center gap-x-3 ${
                 !nextStep ? "disabled" : ""

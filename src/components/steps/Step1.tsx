@@ -7,8 +7,22 @@ import Otpinput from "../ui/OtpInput";
 import useSendOtp from "../../hooks/requests/useSendOtp";
 import { toast } from "react-toastify";
 
-const Step1 = () => {
+const Step1 = ({ setNextstep }) => {
   const [canSendOtp, setCanSendOtp] = useState<boolean>(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^.{8,}$/; // kamida 8 ta belgidan iborat
+
+  useEffect(() => {
+    if (emailRegex.test(email) && passwordRegex.test(password)) {
+      setNextstep(true);
+    } else {
+      setNextstep(false);
+    }
+  }, [email, password]);
+
   const {
     mutateAsync,
     isSuccess: sendOtpSuccess,
@@ -16,25 +30,29 @@ const Step1 = () => {
     error,
     isPending,
   } = useSendOtp();
+
   const ref = useRef<HTMLInputElement>(null);
   const [phoneNumber, setPhoneNumber] = useState<string>("+998950086735");
+
   const handleClick = () => {
     const phoneNumber = ref.current?.value;
     setPhoneNumber(phoneNumber);
     mutateAsync(phoneNumber);
   };
+
   useEffect(() => {
     if (sendOtpSuccess) {
       toast.success(`Sms code sended`);
       setCanSendOtp(false);
     }
   }, [sendOtpSuccess]);
+
   useEffect(() => {
     if (isError) {
       toast.error(error["response"].data.message);
-      toast.error("csc");
     }
   }, [isError]);
+  
   return (
     <>
       <InputMask

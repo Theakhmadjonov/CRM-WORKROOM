@@ -1,5 +1,9 @@
+import Icon from "../components/ui/Icon";
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <section></section>
+  )
 };
 
 export default DashboardPage;
