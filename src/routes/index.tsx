@@ -5,6 +5,7 @@ import DashboardPage from "../pages/DashboardPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import SuccessfullPage from "../pages/SuccessfullPage";
+import ProtectedRouteComponent from "../components/ProtectedRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ export const routes = createBrowserRouter([
     element: <AppWrapperLayout />,
     children: [
       {
-        element: <RootLayout />,
+        element: (
+          <ProtectedRouteComponent>
+            <RootLayout />
+          </ProtectedRouteComponent>
+        ),
         children: [
           {
             index: true,
