@@ -13,7 +13,7 @@ const Step1 = ({ setNextstep }) => {
   const [password, setPassword] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^.{8,}$/; // kamida 8 ta belgidan iborat
+  const passwordRegex = /^.{8,}$/; 
 
   useEffect(() => {
     if (emailRegex.test(email) && passwordRegex.test(password)) {
