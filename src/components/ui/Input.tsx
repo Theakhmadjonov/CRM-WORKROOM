@@ -7,6 +7,7 @@ import {
 import "../../assets/styles/input.css";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+import Icon from "./Icon";
 
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -15,6 +16,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   required?: boolean;
   placeholder: string;
   type: HTMLInputTypeAttribute;
+  locationIcon?: boolean;
 }
 
 const Input = ({
@@ -24,6 +26,7 @@ const Input = ({
   eyeIcon,
   inputClassName,
   type,
+  locationIcon,
   ...props
 }: InputProps) => {
   const [visible, setVisible] = useState<HTMLInputTypeAttribute>(type);
@@ -55,6 +58,14 @@ const Input = ({
             ) : (
               <IoEyeOffOutline className="size-5" />
             )}
+          </button>
+        )}
+        {locationIcon && (
+          <button
+            type="button"
+            className="absolute cursor-pointer bg-transparent top-[50%] z-50 translate-y-[-50%] right-[16px] flex items-center"
+          >
+            <Icon.location />
           </button>
         )}
       </div>

@@ -1,7 +1,22 @@
 import Icon from "./ui/Icon";
 import person from "../assets/icons/photo.svg";
+import { useState } from "react";
 
-const Header = () => {
+interface UserData {
+  img_url: string;
+  username: string;
+  setIsProfile: any;
+  isProfile: boolean;
+}
+
+const Header = ({ img_url, setIsProfile, username, isProfile }: UserData) => {
+  const putProfile = () => {
+    if (isProfile === true) {
+      setIsProfile(false);
+    } else {
+      setIsProfile(true);
+    }
+  };
   return (
     <header className="mt-[20px] ml-[30px]">
       <div className="flex items-center justify-between">
@@ -17,10 +32,21 @@ const Header = () => {
           <div className="flex items-center justify-center rounded-[14px] w-12 h-12 bg-white">
             <Icon.bellIcon />
           </div>
-          <div className="flex items-center justify-center h-[48px] rounded-[15px] bg-white px-[14px] gap-x-2.5">
-            <img src={person} alt="" />
-            <h1 className="font-[700] text-[18px] text-[#0A1629]">
-              Evan Yates
+          <div
+            onClick={putProfile}
+            className="flex items-center justify-center h-[48px] rounded-[15px] bg-white px-[14px] gap-x-2.5"
+          >
+            <img
+              onClick={putProfile}
+              src={img_url ? img_url : person}
+              alt=""
+              className="w-[30px] h-[30px] rounded-[50%]"
+            />
+            <h1
+              onClick={putProfile}
+              className="font-[700] text-[18px] text-[#0A1629]"
+            >
+              {username}
             </h1>
             <Icon.bottomArrowIcon2 />
           </div>

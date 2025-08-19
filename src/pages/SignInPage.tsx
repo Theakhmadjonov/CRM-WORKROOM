@@ -4,7 +4,7 @@ import illustration from "../assets/icons/Illustration.svg";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useLogin } from "../hooks/requests/useLogin";
@@ -22,7 +22,8 @@ const SignInPage = () => {
     formState: { errors },
     setValue,
   } = useForm<ILoginForm>();
-  const { mutateAsync, isPending, isSuccess, isError, error } = useLogin();
+  const { mutateAsync, isPending, isSuccess, isError, error, data } =
+    useLogin();
   const navigate = useNavigate();
   const onLogin: SubmitHandler<ILoginForm> = ({ email, password }) => {
     mutateAsync({ email, password });
@@ -114,9 +115,12 @@ const SignInPage = () => {
                     </>
                   )}
                 </Button>
-                <span className="font-semibold text-[16px] text-[#3f8cff]">
+                <Link
+                  to={"/sign-up"}
+                  className="font-semibold text-[16px] text-[#3f8cff]"
+                >
                   Don't have an account?
-                </span>
+                </Link>
               </div>
             </form>
           </div>

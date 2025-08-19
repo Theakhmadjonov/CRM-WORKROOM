@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../assets/styles/input.css";
 import CodeTimer from "../CodeTimer";
 import Input from "../ui/Input";
@@ -7,16 +7,23 @@ import Otpinput from "../ui/OtpInput";
 import useSendOtp from "../../hooks/requests/useSendOtp";
 import { toast } from "react-toastify";
 
-const Step1 = ({ setNextstep }) => {
+const Step1 = ({ setNextstep, setEmail, setPassword, setVerifiedPhoneNumber }) => {
   const [canSendOtp, setCanSendOtp] = useState<boolean>(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [otpVerified, setOtpVerified] = useState(false);
+  const [email, setInpuEmail] = useState("");
+  const [password, setInputPassword] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^.{8,}$/; 
+  const passwordRegex = /^.{8,}$/;
 
   useEffect(() => {
-    if (emailRegex.test(email) && passwordRegex.test(password)) {
+    setEmail(email)
+    setPassword(password)
+
+    const emailValid = emailRegex.test(email);
+    const passwordValid = passwordRegex.test(password);
+
+    if (emailValid && passwordValid && otpVerified) {
       setNextstep(true);
     } else {
       setNextstep(false);
@@ -52,7 +59,7 @@ const Step1 = ({ setNextstep }) => {
       toast.error(error["response"].data.message);
     }
   }, [isError]);
-  
+
   return (
     <>
       <InputMask
@@ -65,6 +72,8 @@ const Step1 = ({ setNextstep }) => {
       {!canSendOtp && (
         <Otpinput
           setCanSendOtp={setCanSendOtp}
+          setOtpVerified={setOtpVerified}
+          setVerifiedPhoneNumber={setVerifiedPhoneNumber}
           phone_number={phoneNumber}
           label="Code from SMS"
         />
@@ -82,6 +91,7 @@ const Step1 = ({ setNextstep }) => {
         required={true}
         label="Email Address"
         placeholder="youremail@gmail.com"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInpuEmail(e.target.value)}
       />
       <Input
         required={true}
@@ -90,9 +100,11 @@ const Step1 = ({ setNextstep }) => {
         type={"password"}
         placeholder="••••••••"
         eyeIcon={true}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputPassword(e.target.value)}
       />
     </>
   );
 };
 
 export default Step1;
+
