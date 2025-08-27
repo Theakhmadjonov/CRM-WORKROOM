@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "../../config/axios";
 
 const useGetStepInputs = (step_number: number) => {
-  const { isSuccess, data, isFetching, isLoading } = useQuery({
+  const { isSuccess, data, isFetching, isLoading, isError } = useQuery({
     queryKey: ["admin-questions", step_number], 
     queryFn: async () => {
       return await api.get("admin/questions", {
@@ -11,7 +11,7 @@ const useGetStepInputs = (step_number: number) => {
     },
   });
 
-  return { isSuccess, data, isFetching, isLoading };
+  return { isSuccess, data, isFetching, isLoading, isError };
 };
 
 export default useGetStepInputs;

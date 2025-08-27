@@ -8,11 +8,17 @@ interface InputOtpProps {
   label: string;
   phone_number: string;
   setCanSendOtp: Dispatch<SetStateAction<boolean>>;
-  setOtpVerified: Dispatch<SetStateAction<boolean>>;
+  setNextStep: Dispatch<SetStateAction<boolean>>;
   setVerifiedPhoneNumber: any;
 }
 
-const Otpinput = ({ label, phone_number, setCanSendOtp, setOtpVerified, setVerifiedPhoneNumber }: InputOtpProps) => {
+const Otpinput = ({
+  label,
+  phone_number,
+  setCanSendOtp,
+  setNextStep,
+  setVerifiedPhoneNumber,
+}: InputOtpProps) => {
   const [otp, setOtp] = useState("");
   const { mutateAsync, isError, isPending, error, isSuccess } = useVerifyOtp();
   useEffect(() => {
@@ -24,9 +30,9 @@ const Otpinput = ({ label, phone_number, setCanSendOtp, setOtpVerified, setVerif
     if (isSuccess) {
       toast.success("otp verified");
       setVerifiedPhoneNumber(phone_number);
-      setOtpVerified(true);
       setTimeout(() => {
         setCanSendOtp(true);
+        setNextStep(true);
       }, 2000);
     }
   }, [isSuccess]);
