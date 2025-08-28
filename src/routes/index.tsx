@@ -23,7 +23,7 @@ export const routes = createBrowserRouter([
         children: [
           {
             index: true,
-            // element: <DashboardPage />,
+            element: <DashboardPage />,
           },
         ],
       },
