@@ -6,6 +6,8 @@ import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import SuccessfullPage from "../pages/SuccessfullPage";
 import ProtectedRouteComponent from "../components/ProtectedRoute";
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 export const routes = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ export const routes = createBrowserRouter([
       {
         path: "successfull",
         element: <SuccessfullPage />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
       },
     ],
   },
